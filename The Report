@@ -1,0 +1,42 @@
+/*SELECT  
+       CASE 
+           WHEN gra.grade >= 8 THEN stu.name 
+           ELSE NULL 
+       END AS student_name, 
+       gra.grade,
+       stu.marks
+FROM students stu
+JOIN grades gra ON stu.marks BETWEEN gra.min_mark AND gra.max_mark
+ORDER BY
+  CASE
+    WHEN gra.grade >= 8 THEN gra.grade
+  END DESC,
+  student_name ASC,
+  CASE
+    WHEN gra.grade < 8 THEN gra.grade
+  END DESC,
+  stu.marks ASC;
+*/
+
+
+
+
+SELECT  
+       CASE 
+           WHEN gra.grade >= 8 THEN stu.name 
+           ELSE NULL 
+       END AS student_name, 
+       gra.grade,
+       stu.marks
+FROM students stu,
+      grades gra
+where stu.marks BETWEEN gra.min_mark AND gra.max_mark
+ORDER BY
+  CASE
+    WHEN gra.grade >= 8 THEN gra.grade
+  END DESC,
+  student_name ASC,
+  CASE
+    WHEN gra.grade < 8 THEN gra.grade
+  END DESC,
+  stu.marks ASC;
