@@ -1,0 +1,7 @@
+SELECT ROUND(lat_n, 4)
+FROM (
+    SELECT lat_n, ROW_NUMBER() OVER() as row_num
+    FROM STATION
+    ORDER BY lat_n
+) as altsorgu_siraliolan
+WHERE row_num = ROUND(0.5 * (SELECT COUNT(*) FROM STATION))
